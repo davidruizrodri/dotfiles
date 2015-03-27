@@ -3,6 +3,7 @@
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
+"    -> Syntax checker (syntastic and rubocop)
 "    -> Files and backups
 "    -> Text, tab and indent related
 "    -> Moving around, tabs and buffers
@@ -133,8 +134,23 @@ colorscheme github
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
-" Configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax checker (syntastic and rubocop)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_ruby_checkers = ['rubocop']
+
+let g:vimrubocop_keymap = 0
+nmap <Leader>ru :RuboCop<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,13 +293,6 @@ nnoremap <leader><leader> <c-^>
 
 " Run commands that require an interactive shell
 nnoremap <leader>r :RunInInteractiveShell<space>
-
-" Map auto complete of (, ", ', [
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap { {}<esc>i
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
