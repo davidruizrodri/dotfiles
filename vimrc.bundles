@@ -30,9 +30,10 @@ Bundle 'vim-scripts/ctags.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'caike/snipmate.vim'
-Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 Bundle 'pangloss/vim-javascript'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'airblade/vim-gitgutter'
