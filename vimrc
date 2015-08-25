@@ -13,6 +13,7 @@
 "    -> Rspec
 "    -> Ctags
 "    -> NERDTree
+"    -> Debugger
 "    -> Misc
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -349,10 +350,6 @@ nnoremap <leader>. :CtrlPTag<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open a NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " NERDTree finder
 map <leader>r :NERDTreeFind<cr>
 
@@ -362,6 +359,20 @@ map <c-t> :NERDTreeToggle<cr>
 " Close NERDTree when no file is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Debugger
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertPryDebugger()
+  return "require 'pry'; binding.pry"
+endfunction
+
+inoremap <leader>deb <c-r>=InsertPryDebugger()<cr>
+
+function! InsertByeBugDebugger()
+  return "require 'byebug'; byebug"
+endfunction
+
+inoremap <leader>bye <c-r>=InsertByeBugDebugger()<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc

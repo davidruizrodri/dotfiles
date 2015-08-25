@@ -67,6 +67,8 @@ PROMPT='%{$fg_bold[yellow]%}%m%~%b$(git_super_status) %# '
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
+export PATH="/usr/local/sbin:$PATH"
+
 # gh
 eval "$(gh alias -s)"
 
