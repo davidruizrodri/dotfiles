@@ -107,11 +107,11 @@ set foldcolumn=1
 set number
 set numberwidth=5
 
-" Red vertical ruler (80 chars)
+" Red vertical ruler (90 chars)
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=90
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg0', '\%>80v.\+', -1)
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg0', '\%>90v.\+', -1)
 endif
 
 " Display extra whitespace
