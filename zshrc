@@ -64,10 +64,13 @@ ZSH_THEME_GIT_PROMPT_SEPARATOR=" | "
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}✚"
 PROMPT='%{$fg_bold[yellow]%}%m%~%b$(git_super_status) %# '
 
+# Elixir path
+export PATH="$PATH:/usr/local/Cellar/elixir/1.0.5/bin"
+
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:/usr/local/sbin"
 
 # gh
 eval "$(gh alias -s)"

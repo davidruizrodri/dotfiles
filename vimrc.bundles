@@ -43,6 +43,11 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'kylef/apiblueprint.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'pld-linux/vim-syntax-vcl'
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'carlosgaldino/elixir-snippets'
+Bundle 'BjRo/vim-extest'
+Bundle 'avdgaag/vim-phoenix'
+
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local
