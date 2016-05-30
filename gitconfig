@@ -15,13 +15,15 @@
   old = red bold
   new = green bold
 [alias]
-  am = !git commit --amend
+  amend = !git commit --amend
+  no-edit-amend = !git commit --amend --no-edit
   co = checkout
   re = rebase
   i-re = !sh -c 'git rebase -i $1' -
   pl = pull
   ps = push
   pushall = !git push --recurse-submodules=on-demand
+  psf = push --force-with-lease
   mg = merge
   mg-no-ff = !sh -c 'git merge --no-ff $1' -
   ci = commit
