@@ -47,7 +47,7 @@ Bundle 'elixir-lang/vim-elixir'
 Bundle 'carlosgaldino/elixir-snippets'
 Bundle 'BjRo/vim-extest'
 Bundle 'avdgaag/vim-phoenix'
-
+Bundle 'ecomba/vim-ruby-refactoring'
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local

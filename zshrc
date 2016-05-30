@@ -70,7 +70,8 @@ export PATH="$PATH:/usr/local/Cellar/elixir/1.0.5/bin"
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
-export PATH="$PATH:/usr/local/sbin"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # gh
 eval "$(gh alias -s)"
