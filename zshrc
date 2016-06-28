@@ -79,5 +79,8 @@ eval "$(gh alias -s)"
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
+# env variables
+[[ -f ~/.env ]] && source ~/.env
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
