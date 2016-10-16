@@ -23,6 +23,7 @@ values."
      elixir
      emacs-lisp
      git
+     github
      html
      javascript
      markdown
@@ -118,6 +119,7 @@ values."
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
+
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -252,10 +254,54 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+layers configuration."
+
+    ;; Fill column indicator at L90
+    (setq-default fci-rule-column 90)
+    (setq fci-rule-width 1)
+    (setq fci-rule-color "#d32f2f")
+    (add-hook 'js2-mode-hook 'fci-mode)
+    (add-hook 'web-mode-hook 'fci-mode)
+    (add-hook 'scss-mode-hook 'fci-mode)
+    (add-hook 'python-mode-hook 'fci-mode)
+    (add-hook 'javascript-mode-hook 'fci-mode)
+    (add-hook 'markdown-mode-hook 'fci-mode)
+    (add-hook 'js-mode-hook 'fci-mode)
+    (add-hook 'org-mode-hook 'fci-mode)
+    (add-hook 'ruby-mode-hook 'fci-mode)
+    (add-hook 'react-mode-hook 'fci-mode)
+
+    (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+    (global-fci-mode 1)
+
+    ;; Enable automatic line wrapping at fill column
+    (auto-fill-mode t)
+
+    ;; Indenting guide
+    (indent-guide-global-mode)
+
+    (defun set-indent (n)
+      (setq-default
+       evil-shift-width n
+       tab-width n
+       c-basic-offset n
+       js-indent-level n
+       js2-basic-offset n
+       javascript-indent-level n
+       css-indent-offset n
+       prolog-indent-width n
+       coffee-tab-width n
+       web-mode-markup-indent-offset n
+       web-mode-css-indent-offset n
+       web-mode-code-indent-offset n
+       web-mode-markup-indent-offset n
+       web-mode-css-indent-offset n
+       web-mode-code-indent-offset n
+       web-mode-attr-indent-offset n
+       python-indent n
+       ))
+
+    (set-indent 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
