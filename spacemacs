@@ -261,6 +261,7 @@ layers configuration."
     (setq fci-rule-width 1)
     (setq fci-rule-color "#d32f2f")
     (add-hook 'js2-mode-hook 'fci-mode)
+    (add-hook 'coffee-mode-hook 'fci-mode)
     (add-hook 'web-mode-hook 'fci-mode)
     (add-hook 'scss-mode-hook 'fci-mode)
     (add-hook 'python-mode-hook 'fci-mode)
@@ -271,8 +272,8 @@ layers configuration."
     (add-hook 'ruby-mode-hook 'fci-mode)
     (add-hook 'react-mode-hook 'fci-mode)
 
-    (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-    (global-fci-mode 1)
+    ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+    ;; (global-fci-mode 1)
 
     ;; Enable automatic line wrapping at fill column
     (auto-fill-mode t)
