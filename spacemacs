@@ -263,6 +263,7 @@ layers configuration."
     (add-hook 'js2-mode-hook 'fci-mode)
     (add-hook 'coffee-mode-hook 'fci-mode)
     (add-hook 'web-mode-hook 'fci-mode)
+    (add-hook 'haml-mode-hook 'fci-mode)
     (add-hook 'scss-mode-hook 'fci-mode)
     (add-hook 'python-mode-hook 'fci-mode)
     (add-hook 'javascript-mode-hook 'fci-mode)
