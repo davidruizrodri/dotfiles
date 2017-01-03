@@ -1,12 +1,11 @@
-# load our own completion functions
-fpath=(~/.zsh/completion $fpath)
+# load our oh-my-zsh completion functions (https://github.com/zsh-users/zsh-completions)
+fpath=(~/.config/zsh/completions/src $fpath)
 
 # completion
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
 # load custom executable functions
-for function in ~/.zsh/functions/*; do
+for function in ~/.dotfiles/zsh/functions/*; do
   source $function
 done
 
@@ -57,12 +56,16 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - --no-rehash)"
 
 # load zsh git prompt
-source ~/.zsh/git-prompt/zshrc.sh
+# TODO: Use oh-my-zsh framework
+source ~/.dotfiles/zsh/git-prompt/git-prompt.plugin.zsh
 ZSH_THEME_GIT_PROMPT_PREFIX="( "
 ZSH_THEME_GIT_PROMPT_SUFFIX=" )"
 ZSH_THEME_GIT_PROMPT_SEPARATOR=" | "
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}✚"
 PROMPT='%{$fg_bold[yellow]%}%m%~%b$(git_super_status) %# '
+
+# XDG Base Directory Specification
+XDG_CONFIG_HOME=$HOME/.config
 
 # Elixir path
 export PATH="$PATH:/usr/local/Cellar/elixir/1.0.5/bin"

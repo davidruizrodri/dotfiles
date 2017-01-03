@@ -3,6 +3,8 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+[apply]
+  whitespace = fix
 [color]
   ui = true
 [color "branch"]
@@ -28,7 +30,7 @@
   mg-no-ff = !sh -c 'git merge --no-ff $1' -
   ci = commit
   co = checkout
-  st = !git status -s
+  st = status --short -b
   cp = cherrypick
   add-partially = !git add -p
   create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
@@ -55,8 +57,8 @@
   rebase = true
 [include]
   path = .gitconfig.local
-[commit]
-  template = ~/.gitmessage
+[init]
+  templatedir = ~/.dotfiles/git/templates
 [fetch]
   prune = true
 [rerere]

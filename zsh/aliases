@@ -9,17 +9,6 @@ alias .....='cd ../../../..'
 # Directory shortcuts
 alias projects='~/projects/'
 
-# Go to project
-gotoproject(){
-  cd ~/projects/$1
-}
-alias goto=gotoproject
-
-# -------------------------------------------------------------------
-# Sublime
-# -------------------------------------------------------------------
-alias s='subl'
-
 # -------------------------------------------------------------------
 # Unix
 # -------------------------------------------------------------------
@@ -38,8 +27,8 @@ alias -g L='| wc -l'
 alias -g ONE="| awk '{ print \$1}'"
 alias e="$EDITOR"
 alias v="$VISUAL"
-alias aliases='subl ~/.bash_aliases'
-alias hosts='sudo subl /etc/hosts'
+alias aliases='vim ~/.aliases'
+alias hosts='sudo vim /etc/hosts'
 alias paux='ps aux | grep'
 alias chromium-unsecure="chromium-browser --disable-web-security"
 alias update-zsh='source ~/.zshrc'
@@ -48,14 +37,6 @@ alias update-zsh='source ~/.zshrc'
 # Git
 # -------------------------------------------------------------------
 alias gitka='gitk --all'
-
-# -------------------------------------------------------------------
-# Svn
-# -------------------------------------------------------------------
-alias sci='svn ci'
-alias sst='svn st --ignore-externals'
-alias sup='svn up --ignore-externals'
-alias slog='svn log --limit=10'
 
 # -------------------------------------------------------------------
 # Bundler
@@ -79,25 +60,15 @@ testunitfocus(){
 alias tfocus=testunitfoucs
 
 # Rails
+alias rake='noglob rake'
 alias rs='rails server'
 alias rc='rails console'
 alias rg='rails generate'
 alias z='zeus'
-alias zstart='zeus start'
-alias zs='zeus server'
-alias zc='zeus console'
-alias zt='zeus test'
-alias ztt='zeus test test'
-alias zmig='zeus rake db:migrate'
-alias zroutes='zeus rake routes | grep'
-alias ztprepare='zeus rake db:test:prepare'
 alias routes='rake routes | grep'
 alias migrate='rake db:migrate'
 alias rollback='rake db:rollback'
 alias tprepare='rake db:test:prepare'
-
-# Solr
-alias solr='rake sunspot:solr:start RAILS_ENV=development && rake sunspot:solr:start RAILS_ENV=test'
 
 # -------------------------------------------------------------------
 # Databases
@@ -114,7 +85,7 @@ alias psqlrestart='sudo service postgresql restart'
 alias fix-keyboard='echo 0 | sudo tee /sys/module/hid_apple/parameters/iso_layout'
 
 # Overwrite dotfiles
-alias overwrite-dotfiles='cd $HOME/.dotfiles; rcup -v -d . -k -x README.md'
+alias overwrite-dotfiles='cd $HOME/.dotfiles; make clean; make'
 
 # Alias ctags if you used homebrew
 alias ctags="`brew --prefix`/bin/ctags"""

@@ -1,5 +1,0 @@
-# Make directory and change into it.
-
-function kill-tmux-session() {
-  tmux kill-session -t "$1";
-}
