@@ -18,7 +18,9 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      elixir
      emacs-lisp
@@ -39,10 +41,8 @@ values."
            ruby-enable-ruby-on-rails-support t
            ruby-test-runner 'rspec)
      ruby-on-rails
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
-     (syntax-checking :variables
-                      syntax-checking-enable-by-default nil)
+     spell-checking
+     syntax-checking
      version-control
      xkcd
      yaml
@@ -109,7 +109,8 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
                          material
-                         spolsky)
+                         spolsky
+                         zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -256,6 +257,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+    ;; Treat rabl/jbuilder files as ruby code
+    (add-to-list 'auto-mode-alist '("\\.rabl" . ruby-mode))
+    (add-to-list 'auto-mode-alist '("\\.jbuilder" . ruby-mode))
+
+    ;; When moving to a project with projectile, show the project dir.
+    (setq projectile-switch-project-action 'projectile-dired)
+
     ;; Fill column indicator at L90
     (setq-default fci-rule-column 90)
     (setq fci-rule-width 1)
@@ -279,7 +287,7 @@ layers configuration."
     ;; Enable automatic line wrapping at fill column
     (auto-fill-mode t)
 
-    ;; Indenting guide
+    ;; Indention guide
     (indent-guide-global-mode)
 
     (defun set-indent (n)
@@ -304,6 +312,21 @@ layers configuration."
        ))
 
     (set-indent 2)
+
+    ;; TODO: config reek
+    ;; To have reek to smell-check the ruby files
+    ; (flycheck-define-checker ruby-reek
+    ;   "A Ruby smeel checker using reek See URL `https://github.com/troessner/reek'."
+    ;   :command ("reek" "--format=html"
+    ;             source-original)
+    ;   :standard-input t
+    ;   :error-parser flycheck-parse-checkstyle
+    ;   :modes (enh-ruby-mode ruby-mode)
+    ;   :next-checkers ((info . ruby-rubocop)))
+    ; (add-to-list 'flycheck-checkers 'ruby-reek)
+
+    ;; Enable debugging in ruby specs
+    (inf-ruby-switch-from-compilation)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
