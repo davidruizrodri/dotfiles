@@ -313,17 +313,16 @@ layers configuration."
 
     (set-indent 2)
 
-    ;; TODO: config reek
-    ;; To have reek to smell-check the ruby files
-    ; (flycheck-define-checker ruby-reek
-    ;   "A Ruby smeel checker using reek See URL `https://github.com/troessner/reek'."
-    ;   :command ("reek" "--format=html"
-    ;             source-original)
-    ;   :standard-input t
-    ;   :error-parser flycheck-parse-checkstyle
-    ;   :modes (enh-ruby-mode ruby-mode)
-    ;   :next-checkers ((info . ruby-rubocop)))
-    ; (add-to-list 'flycheck-checkers 'ruby-reek)
+    ;; To have Reek to smell-check the ruby files
+    (flycheck-define-checker ruby-reek
+        "A Ruby smeel checker using Reek See URL `https://github.com/troessner/reek'."
+        :command ("reek" "--format=xml"
+                  source-original)
+        :standard-input t
+        :error-parser flycheck-parse-checkstyle
+        :modes (enh-ruby-mode ruby-mode)
+        :next-checkers ((info . ruby-rubocop)))
+      (add-to-list 'flycheck-checkers 'ruby-reek)
 
     ;; Enable debugging in ruby specs
     (inf-ruby-switch-from-compilation)
