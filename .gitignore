@@ -1,0 +1,8 @@
+*.swp
+*~
+tags*
+Gemfile.lock
+.bundle
+vendor/
+editors/**/plugged
+editors/**/autoload/plug.vim
