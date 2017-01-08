@@ -311,6 +311,8 @@ layers configuration."
        web-mode-code-indent-offset n
        web-mode-attr-indent-offset n
        python-indent n
+       sh-basic-offset n
+       sh-indentation n
        ))
 
     (set-indent 2)
