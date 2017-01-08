@@ -48,8 +48,8 @@ bindkey "^F" forward-word
 bindkey "^D" backward-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
-# use vim as the visual editor
-export VISUAL=vim
+# use nvim as the visual editor
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 export PATH="$HOME/.rbenv/bin:$PATH"
