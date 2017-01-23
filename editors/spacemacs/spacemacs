@@ -38,6 +38,7 @@ values."
             shell-default-term-shell "/bin/zsh")
      spell-checking
      (ruby :variables
+           ruby-version-manager 'rbenv
            ruby-enable-ruby-on-rails-support t
            ruby-test-runner 'rspec)
      ruby-on-rails
@@ -330,6 +331,17 @@ layers configuration."
 
     ;; Enable debugging in ruby specs
     (inf-ruby-switch-from-compilation)
+  )
+
+;; Override defaul ruby test command to use spring
+(eval-after-load "ruby-test-mode"
+  '(defun ruby-test-spec-command (filename &optional line-number)
+     (let (command options)
+       (setq command "bundle exec spring rspec")
+       (setq options ruby-test-rspec-options)
+       (if line-number
+           (setq filename (format "%s:%s" filename line)))
+       (format "%s %s %s" command (mapconcat 'identity options " ") filename)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
