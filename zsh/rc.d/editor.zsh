@@ -4,3 +4,4 @@
 # Use nvim as the visual editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
+export PAGER=less
