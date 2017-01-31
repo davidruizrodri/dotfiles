@@ -1,5 +1,5 @@
 # Rbenv
 # -----------------------------------------------
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:$HOME/.rbenv/bin"
 eval "$(rbenv init - --no-rehash)"

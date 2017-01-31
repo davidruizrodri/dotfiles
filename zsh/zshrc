@@ -1,13 +1,6 @@
 # load our oh-my-zsh completion functions (https://github.com/zsh-users/zsh-completions)
 fpath=(~/.config/zsh/completions/src $fpath)
 
-# Load all files from rc.d directory
-if [ -d ~/.dotfiles/zsh/rc.d ]; then
-  for file in ~/.dotfiles/zsh/rc.d/*.zsh; do
-    source $file
-  done
-fi
-
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5
@@ -27,11 +20,17 @@ export PATH="$PATH:/usr/local/Cellar/elixir/1.0.5/bin"
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # gh
 eval "$(gh alias -s)"
+
+# Load all files from rc.d directory
+if [ -d ~/.dotfiles/zsh/rc.d ]; then
+  for file in ~/.dotfiles/zsh/rc.d/*.zsh; do
+    source $file
+  done
+fi
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
