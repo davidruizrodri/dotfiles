@@ -331,6 +331,7 @@ layers configuration."
     ;; Treat rabl/jbuilder files as ruby code
     (add-to-list 'auto-mode-alist '("\\.rabl" . ruby-mode))
     (add-to-list 'auto-mode-alist '("\\.jbuilder" . ruby-mode))
+    (add-to-list 'auto-mode-alist '("\\xml.builder" . ruby-mode))
 
     ;; When moving to a project with projectile, show the project dir.
     (setq projectile-switch-project-action 'projectile-dired)
