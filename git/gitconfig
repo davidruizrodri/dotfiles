@@ -49,6 +49,7 @@
   apply-command-everywhere = !sh -c 'git filter-branch --tree-filter $1 --all' -
   reset = !git reset HEAD
   remove-merged-branches = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+  merge-to = "!gitmergeto() { git push \"`git rev-parse --show-toplevel`\" `git rev-parse --abbrev-ref HEAD`:$1; } && gitmergeto"
 [merge]
   ff = only
 [push]
