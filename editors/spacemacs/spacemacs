@@ -31,11 +31,14 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     sql
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
      elixir
+     helm
      emacs-lisp
      git
      github
@@ -321,6 +324,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+    ;; Remap ESC to 'jk'
+    (setq-default
+      evil-escape-key-sequence "jk"
+      evil-escape-unordered-key-sequence "true"
+    )
   )
 
 (defun dotspacemacs/user-config ()
@@ -406,7 +414,7 @@ layers configuration."
 (eval-after-load "ruby-test-mode"
   '(defun ruby-test-spec-command (filename &optional line-number)
      (let (command options)
-       (setq command "bundle exec spring rspec")
+       (setq command "bundle exec spring rspec --format documentation")
        (setq options ruby-test-rspec-options)
        (if line-number
            (setq filename (format "%s:%s" filename line)))
