@@ -1,12 +1,3 @@
-# Bindkeys
-# -----------------------------------------------
-
-# vi mode
-bindkey -v
-bindkey "^F" vi-cmd-mode
-bindkey jj vi-cmd-mode
-
-# Handy keybindings
 bindkey "^B" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^R" history-incremental-search-backward

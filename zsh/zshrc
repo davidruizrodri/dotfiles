@@ -1,36 +1,22 @@
-# load our oh-my-zsh completion functions (https://github.com/zsh-users/zsh-completions)
-fpath=(~/.config/zsh/completions/src $fpath)
+export ZSH="/Users/david2R_/.oh-my-zsh"
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+ZSH_THEME="spaceship"
 
-# Load all files from rc.d directory
-if [ -d ~/.dotfiles/zsh/rc.d ]; then
-  for file in ~/.dotfiles/zsh/rc.d/*.zsh; do
-    source $file
-  done
-fi
+plugins=(
+  autojump
+  git
+  osx
+  rbenv
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
-# awesome cd movements from zshkit
-setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
-DIRSTACKSIZE=5
+SPACESHIP_PROMPT_SYMBOL="❯"
+SPACESHIP_DIR_COLOR=yellow
+SPACESHIP_GIT_BRANCH_COLOR=cyan
 
-# Enable extended globbing
-setopt extendedglob
+source $ZSH/oh-my-zsh.sh
 
-# Allow [ or ] whereever you want
-unsetopt nomatch
-
-# XDG Base Directory Specification
-XDG_CONFIG_HOME=$HOME/.config
-
-# Elixir path
-export PATH="$PATH:/usr/local/Cellar/elixir/1.0.5/bin"
-
-# mkdir .git/safe in the root of repositories you trust
-export PATH=".git/safe/../../bin:$PATH"
-
-# gh
-eval "$(gh alias -s)"
-
-# Local config
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+source $ZSH_CUSTOM/aliases.zsh
+source $ZSH_CUSTOM/bindkeys.zsh
+source $ZSH_CUSTOM/editor.zsh

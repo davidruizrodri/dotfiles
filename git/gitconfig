@@ -56,6 +56,7 @@
   default = simple
 [pull]
   rebase = true
+  autoStash = true
 [include]
   path = .gitconfig.local
 [init]
