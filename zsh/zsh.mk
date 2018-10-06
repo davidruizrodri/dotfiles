@@ -34,9 +34,7 @@ ifdef ZSH
 		$(RM) $(OH_MY_ZSH_DIR)
 		$(RM) $(ZSH_PLUGINS_DIR)/zsh-syntax-highlighting
 		$(RM) $(ZSH_PLUGINS_DIR)/zsh-autosuggestions
-		$(RM) $(ZSH_CUSTOM)/aliases.zsh
-		$(RM) $(ZSH_CUSTOM)/bindkeys.zsh
-		$(RM) $(ZSH_CUSTOM)/editor.zsh
+		$(RM) $(ZSH_CUSTOM_COPY)
 		$(RM) $(ZSHRC)
 else
   @echo "Zsh is not installed"
