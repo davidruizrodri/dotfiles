@@ -11,3 +11,4 @@ fonts: dotfile_install_fonts
 	$(EXECUTE) $(POWERLINE_FONTS_DIR)/install.sh
 clean_fonts: dotfile_clean_fonts
 	$(EXECUTE) $(CONFIG_DIR)/fonts/uninstall.sh
+	$(RM) $(POWERLINE_FONTS_DIR)
