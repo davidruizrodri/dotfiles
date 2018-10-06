@@ -1,4 +1,4 @@
-export ZSH="/Users/david2R_/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="spaceship"
 
@@ -11,12 +11,14 @@ plugins=(
   zsh-autosuggestions
 )
 
-SPACESHIP_PROMPT_SYMBOL="❯"
+SPACESHIP_CHAR_SYMBOL="❯ "
 SPACESHIP_DIR_COLOR=yellow
 SPACESHIP_GIT_BRANCH_COLOR=cyan
+SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
 
 source $ZSH/oh-my-zsh.sh
 
-source $ZSH_CUSTOM/aliases.zsh
-source $ZSH_CUSTOM/bindkeys.zsh
-source $ZSH_CUSTOM/editor.zsh
+source "/Users/david.ruiz/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
