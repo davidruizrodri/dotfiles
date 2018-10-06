@@ -15,11 +15,12 @@ ifdef XDG_CONFIG_HOME
 endif
 CONFIG_DIR ?= $(DST_DIR)/.config
 
-LINK  := ln -sf
-MKDIR := mkdir -p
-CLONE := git clone
-RM    := rm -fr
-COPY  := cp
+LINK    := ln -sf
+MKDIR   := mkdir -p
+CLONE   := git clone
+RM      := rm -fr
+COPY    := cp
+EXECUTE := sh
 
 .PHONY: default install clean
 
