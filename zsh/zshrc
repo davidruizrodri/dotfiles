@@ -21,4 +21,4 @@ SPACESHIP_DOCKER_SHOW=false
 
 source $ZSH/oh-my-zsh.sh
 
-source "/Users/david.ruiz/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
