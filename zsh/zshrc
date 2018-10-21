@@ -5,8 +5,10 @@ ZSH_THEME="spaceship"
 plugins=(
   autojump
   git
+  git-extras
   osx
   rbenv
+  tmuxinator
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
@@ -18,6 +20,9 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_RUBY_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 source $ZSH/oh-my-zsh.sh
 
