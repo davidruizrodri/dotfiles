@@ -20,6 +20,7 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_RUBY_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
