@@ -2,6 +2,7 @@
   name = 'David Ruiz'
 [core]
   excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
   autocrlf = input
 [apply]
   whitespace = fix
