@@ -5,3 +5,4 @@ BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries --with-xml2-include=/usr/local/o
 BUNDLE_BUILD__EVENTMACHINE: "--with-cppflags=-I/usr/local/opt/openssl/include"
 BUNDLE_BUILD__PUMA: "--with-opt-dir=/usr/local/opt/openssl"
 BUNDLE_JOBS: "3"
+BUNDLE_BUILD__LIBXML-RUBY: "--use-system-libraries=true --with-xml2-include=/usr/local/opt/libxml2/include/libxml2/"
