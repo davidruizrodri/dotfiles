@@ -1,8 +1,0 @@
-[
-  { "keys": ["ctrl+shift+x"], "command": "toggle_side_bar" },
-  { "keys": ["super+v"], "command": "paste_and_indent" },
-  { "keys": ["super+shift+v"], "command": "paste" },
-  { "keys": ["super+shift+r"],  "command": "reindent" },
-  { "keys": ["ctrl+alt+c"], "command": "toggle_comment", "args": { "block": false } },
-  { "keys": ["alt+d"], "command": "goto_definition" }
-]
