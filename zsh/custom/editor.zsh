@@ -1,3 +1,3 @@
-export EDITOR=nvim
+export EDITOR=code
 export VISUAL=$EDITOR
 export PAGER=less
