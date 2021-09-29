@@ -7,3 +7,4 @@ gem: --no-ri --no-rdoc
 - http://rubygems.org/
 :backtrace: true
 :bulk_threshold: 1000
+install: --user-install
