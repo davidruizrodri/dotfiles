@@ -7,7 +7,7 @@ plugins=(
   autojump
   git
   git-extras
-  osx
+  macos 
   tmuxinator
   zsh-syntax-highlighting
   zsh-autosuggestions
