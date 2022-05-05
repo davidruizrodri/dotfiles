@@ -15,6 +15,8 @@ ifdef RUBY
 	PRYRC             := $(DST_DIR)/.pryrc
 	RSPEC_SRC         := $(RUBY_SRC_DIR)/rspec
 	RSPEC             := $(DST_DIR)/.rspec
+	ASDFRC_SRC        := $(RUBY_SRC_DIR)/asdfrc
+	ASDFRC            := $(DST_DIR)/.asdfrc
 
   .PHONY: ruby clean_ruby
 
@@ -28,14 +30,17 @@ ifdef RUBY
 		$(LINK) $(PRYRC_SRC) $@
   $(RSPEC):
 		$(LINK) $(RSPEC_SRC) $@
+  $(ASDFRC):
+		$(LINK) $(ASDFRC_SRC) $@
 
-  ruby: dotfile_install_ruby $(PRYRC) $(IRBRC) $(RSPEC) $(GEMRC) $(BUNDLE_CONFIG)
+  ruby: dotfile_install_ruby $(PRYRC) $(IRBRC) $(RSPEC) $(GEMRC) $(BUNDLE_CONFIG) $(ASDFRC)
   clean_ruby: dotfile_clean_ruby
 		$(RM) $(BUNDLE_CONFIG)
 		$(RM) $(GEMRC)
 		$(RM) $(IRBRC)
 		$(RM) $(PRYRC)
 		$(RM) $(RSPEC)
+		$(RM) $(ASDFRC)
 else
   @echo "Ruby is not installed"
 endif
