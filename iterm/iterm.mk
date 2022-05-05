@@ -9,5 +9,6 @@ ITERM_CONFIG_DIR := $(CONFIG_DIR)/iterm2
 iterm: dotfile_install_iterm
 	$(MKDIR) $(CONFIG_DIR)/iterm2
 	$(COPY) $(ITERM_SRC_DIR)/Snazzy.itermcolors $(ITERM_CONFIG_DIR)
+	$(OPEN) $(ITERM_CONFIG_DIR)/Snazzy.itermcolors
 clean_iterm: dotfile_clean_iterm
 	$(RM) $(ITERM_CONFIG_DIR)

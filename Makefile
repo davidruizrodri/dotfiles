@@ -21,6 +21,7 @@ CLONE   := git clone
 RM      := rm -fr
 COPY    := cp
 EXECUTE := sh
+OPEN    := open
 
 .PHONY: default install clean
 
