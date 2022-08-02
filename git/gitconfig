@@ -54,6 +54,7 @@
   path = .gitconfig.local
 [init]
   templatedir = ~/.dotfiles/git/templates
+  defaultBranch = main
 [fetch]
   prune = true
 [rerere]
