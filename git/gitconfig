@@ -47,6 +47,7 @@
   ff = only
 [push]
   default = simple
+  autoSetupRemote = true
 [pull]
   rebase = true
   autoStash = true
