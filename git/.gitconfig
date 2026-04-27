@@ -63,16 +63,3 @@
   enabled = true
 [gh]
   autoUpdate = always
-[maintenance]
-	repo = /Users/david.ruiz/projects/gizmo
-	repo = /Users/david.ruiz/projects/scheduler
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-[url "https://github.com/"]
-	insteadOf = git@github.com:
-[http]
-	sslCAPath = /Users/Shared/RakutenCertificates
-	sslCAInfo = /Users/Shared/RakutenCertificates/rak-ca-bundle.pem

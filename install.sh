@@ -7,6 +7,12 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 log()  { echo "  + $*"; }
 skip() { echo "  ~ $* (already exists, skipping)"; }
 
+# ── Dependencies ──────────────────────────────────────────────────────────────
+if ! command -v stow &>/dev/null; then
+  log "Installing stow via Homebrew"
+  brew install stow
+fi
+
 # ── oh-my-zsh, spaceship, and zsh plugins ────────────────────────────────────
 OMZ_DIR="$HOME/.oh-my-zsh"
 OMZ_CUSTOM="$OMZ_DIR/custom"
