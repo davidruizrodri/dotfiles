@@ -48,12 +48,6 @@ clone_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax
 clone_plugin https://github.com/zsh-users/zsh-autosuggestions.git     zsh-autosuggestions
 
 
-# ── Pre-create dirs that Stow can't create (parent dirs must exist) ───────────
-log "Creating required directories"
-mkdir -p "$HOME/.ssh"
-mkdir -p "$HOME/.bundle"
-chmod 700 "$HOME/.ssh"
-
 # ── Remove broken symlinks left by the old Makefile system ───────────────────
 log "Removing stale symlinks"
 for link in \
@@ -68,19 +62,10 @@ done
 # ── Stow all packages ─────────────────────────────────────────────────────────
 log "Stowing dotfiles"
 cd "$DOTFILES"
-for package in git zsh ruby tmux ssh ctags warp; do
+for package in git zsh ctags warp; do
   log "stow $package"
   stow --target="$HOME" "$package"
 done
-
-# ── Tmux Plugin Manager ───────────────────────────────────────────────────────
-TPM_DIR="$HOME/.tmux/plugins/tpm"
-if [[ -d "$TPM_DIR" ]]; then
-  skip "tmux plugin manager"
-else
-  log "Installing tmux plugin manager"
-  git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-fi
 
 # ── Powerline fonts ───────────────────────────────────────────────────────────
 FONTS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/fonts"
