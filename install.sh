@@ -56,8 +56,13 @@ chmod 700 "$HOME/.ssh"
 
 # ── Remove broken symlinks left by the old Makefile system ───────────────────
 log "Removing stale symlinks"
-find "$HOME" -maxdepth 3 -type l | while read -r link; do
-  [[ -e "$link" ]] || rm "$link"
+for link in \
+  "$HOME/.gitconfig" "$HOME/.gitignore" "$HOME/.gitattributes" \
+  "$HOME/.zshrc" "$HOME/.asdfrc" "$HOME/.gemrc" "$HOME/.irbrc" \
+  "$HOME/.pryrc" "$HOME/.rspec" "$HOME/.ctags" "$HOME/.tmux.conf" \
+  "$HOME/.ssh/config" "$HOME/.bundle/config"
+do
+  [[ -L "$link" && ! -e "$link" ]] && rm "$link"
 done
 
 # ── Stow all packages ─────────────────────────────────────────────────────────
