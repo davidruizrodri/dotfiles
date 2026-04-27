@@ -54,6 +54,12 @@ mkdir -p "$HOME/.ssh"
 mkdir -p "$HOME/.bundle"
 chmod 700 "$HOME/.ssh"
 
+# ── Remove broken symlinks left by the old Makefile system ───────────────────
+log "Removing stale symlinks"
+find "$HOME" -maxdepth 3 -type l | while read -r link; do
+  [[ -e "$link" ]] || rm "$link"
+done
+
 # ── Stow all packages ─────────────────────────────────────────────────────────
 log "Stowing dotfiles"
 cd "$DOTFILES"
