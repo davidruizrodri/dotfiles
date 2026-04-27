@@ -1,0 +1,22 @@
+---
+  name: Example of 1 windows and 2 tabs, with 2 panes each
+  windows:
+    - tabs:
+        - title: foo
+          layout:
+            split_direction: vertical
+            panes:
+              - cwd: /Users/user/foo/
+                commands:
+                  - exec: ls
+              - cwd: /Users/user/foo/
+          color: blue
+        - title: bar
+          layout:
+            split_direction: vertical
+            panes:
+              - cwd: /Users/user/bar/
+                commands:
+                  - exec: ls
+              - cwd: /Users/user/bar/
+          color: green
