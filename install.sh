@@ -62,7 +62,7 @@ done
 # ── Stow all packages ─────────────────────────────────────────────────────────
 log "Stowing dotfiles"
 cd "$DOTFILES"
-for package in git zsh ctags warp; do
+for package in git zsh warp; do
   log "stow $package"
   stow --target="$HOME" "$package"
 done
