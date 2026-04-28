@@ -1,4 +1,5 @@
 .claude/
+.gitconfig.local
 *.swp
 *~
 tags*

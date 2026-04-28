@@ -92,6 +92,20 @@ for package in git zsh warp; do
   stow --target="$HOME" "$package"
 done
 
+# ── Git local config (corporate email override) ───────────────────────────────
+GITCONFIG_LOCAL="$HOME/.gitconfig.local"
+if [[ ! -f "$GITCONFIG_LOCAL" ]]; then
+  read -rp "  ? Enter corporate email for git (leave blank to skip): " corporate_email
+  if [[ -n "$corporate_email" ]]; then
+    printf "[user]\n\temail = %s\n" "$corporate_email" > "$GITCONFIG_LOCAL"
+    log "Created ~/.gitconfig.local with email: $corporate_email"
+  else
+    skip "~/.gitconfig.local"
+  fi
+else
+  skip "~/.gitconfig.local"
+fi
+
 # ── Powerline fonts ───────────────────────────────────────────────────────────
 FONTS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/fonts"
 if [[ -d "$FONTS_DIR" ]]; then
