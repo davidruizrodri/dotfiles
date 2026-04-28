@@ -36,6 +36,7 @@ brew "sops"                   # encrypted secrets management for config files
 cask "bitwarden"
 cask "firefox"
 cask "font-fira-code"
+cask "licecap"
 cask "logitech-options"
 cask "rambox"
 cask "raycast"
