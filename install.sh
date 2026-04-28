@@ -7,6 +7,14 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 log()  { echo "  + $*"; }
 skip() { echo "  ~ $* (already exists, skipping)"; }
 
+# ── Claude Code ───────────────────────────────────────────────────────────────
+if ! command -v claude &>/dev/null; then
+  log "Installing Claude Code"
+  curl -fsSL https://claude.ai/install.sh | bash
+else
+  skip "Claude Code"
+fi
+
 # ── Homebrew ──────────────────────────────────────────────────────────────────
 if ! command -v brew &>/dev/null; then
   log "Installing Homebrew"
