@@ -11,11 +11,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Idempotent — safe to re-run. Each step is guarded and skips if already installed.
 
 What it does, in order:
-1. Installs oh-my-zsh, spaceship-prompt, zsh-syntax-highlighting, zsh-autosuggestions
-2. Creates `~/.ssh` and `~/.bundle` (Stow requires parent dirs to exist)
-3. Runs `stow <package>` for every package
-4. Clones tmux plugin manager (TPM) into `~/.tmux/plugins/tpm`
-5. Clones and installs powerline fonts
+1. Installs Homebrew if not present
+2. Runs `brew bundle` to install all packages and apps from `Brewfile`
+3. Changes the default shell to zsh if needed
+4. Installs oh-my-zsh, spaceship-prompt, zsh-syntax-highlighting, zsh-autosuggestions
+5. Runs `stow <package>` for every package
+6. Clones and installs powerline fonts
+7. Sources `~/.laptop.local` if present (machine-specific overrides)
 
 ## Architecture
 
@@ -23,12 +25,10 @@ Dotfiles are managed with **GNU Stow**. Each top-level directory is a Stow packa
 
 ```
 git/.gitconfig        → ~/.gitconfig
-ssh/.ssh/config       → ~/.ssh/config
-ruby/.bundle/config   → ~/.bundle/config
 warp/.warp/...        → ~/.warp/...
 ```
 
-**The nesting rule:** files that belong at `~/.foo` must live at `<package>/.foo`. Files that belong at `~/.ssh/foo` must live at `<package>/.ssh/foo`.
+**The nesting rule:** files that belong at `~/.foo` must live at `<package>/.foo`.
 
 To stow a single package manually:
 ```sh
@@ -42,22 +42,28 @@ stow --target="$HOME" -D git  # unstow (remove symlinks)
 2. Inside it, mirror the path the file should have in `$HOME`. For example, a file that belongs at `~/.config/foo/bar.conf` goes at `<tool>/.config/foo/bar.conf`.
 3. Add the package name to the `for package in ...` loop in `install.sh`.
 
+## Adding a New App or Tool
+
+Add it to `Brewfile` and run `brew bundle`. Use `brew bundle check` to see what's missing without installing.
+
 ## Zsh Custom Files
 
-`zsh/custom/aliases.zsh`, `bindkeys.zsh`, and `editor.zsh` are sourced directly from the dotfiles path via `$DOTFILES` in `.zshrc`. They do **not** go through oh-my-zsh's custom directory.
+`zsh/custom/aliases.zsh`, `bindkeys.zsh`, and `editor.zsh` are sourced directly from `$DOTFILES` in `.zshrc`. They do **not** go through oh-my-zsh's custom directory.
 
 ## Git Hooks (Templates)
 
-Hooks in `git/templates/hooks/` are automatically copied to every new git repo via `templatedir = ~/.dotfiles/git/templates` in `gitconfig`. They are excluded from Stow via `git/.stow-local-ignore`.
+Hooks in `git/templates/hooks/` are automatically copied to every new git repo via `templatedir = ~/.dotfiles/git/templates` in `.gitconfig`:
 
 - **`pre-commit`** — blocks commits containing debug keywords (`debugger`, `console.log`, `byebug`, `binding.pry`, conflict markers)
 - **`prepare-commit-msg`** — auto-prepends the Jira issue key extracted from the branch name (e.g., `feature/PROJ-123-foo` → `[PROJ-123] your message`)
 
 To apply the hooks to an existing repo, run `git init` inside it.
 
+## Machine-specific Overrides
+
+`~/.laptop.local` is sourced at the end of `install.sh` if it exists. Use it for machine-specific setup that shouldn't be committed to the repo.
+
 ## Notable Configuration Details
 
-- **Ruby**: `ruby/.bundle/config` has pre-configured native build flags for macOS gems (mysql2, nokogiri, libv8, eventmachine, puma).
 - **Git**: fast-forward-only merges, rebase-based pulls with autostash, `push.autoRemoteSetup = true`.
-- **Tmux**: prefix is `Ctrl-A`. After first launch run `prefix + I` to install TPM plugins.
 - **Zsh**: Spaceship battery widget disabled. `SPACESHIP_PROMPT_ASYNC=false` set for Warp terminal compatibility.
