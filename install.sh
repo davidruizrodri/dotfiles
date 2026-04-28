@@ -7,10 +7,28 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 log()  { echo "  + $*"; }
 skip() { echo "  ~ $* (already exists, skipping)"; }
 
-# ── Dependencies ──────────────────────────────────────────────────────────────
-if ! command -v stow &>/dev/null; then
-  log "Installing stow via Homebrew"
-  brew install stow
+# ── Homebrew ──────────────────────────────────────────────────────────────────
+if ! command -v brew &>/dev/null; then
+  log "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  arch="$(uname -m)"
+  HOMEBREW_PREFIX="$([[ "$arch" == "arm64" ]] && echo /opt/homebrew || echo /usr/local)"
+  eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
+fi
+
+log "Installing packages from Brewfile"
+brew update --force
+brew bundle --file="$DOTFILES/Brewfile"
+
+# ── Shell ─────────────────────────────────────────────────────────────────────
+if [[ "$SHELL" != "$(command -v zsh)" ]]; then
+  log "Changing shell to zsh"
+  shell_path="$(command -v zsh)"
+  if ! grep -q "$shell_path" /etc/shells; then
+    sudo sh -c "echo $shell_path >> /etc/shells"
+  fi
+  sudo chsh -s "$shell_path" "$USER"
 fi
 
 # ── oh-my-zsh, spaceship, and zsh plugins ────────────────────────────────────
@@ -47,7 +65,6 @@ clone_plugin() {
 clone_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting
 clone_plugin https://github.com/zsh-users/zsh-autosuggestions.git     zsh-autosuggestions
 
-
 # ── Remove broken symlinks left by the old Makefile system ───────────────────
 log "Removing stale symlinks"
 for link in \
@@ -75,6 +92,12 @@ else
   log "Installing powerline fonts"
   git clone https://github.com/powerline/fonts.git "$FONTS_DIR"
   sh "$FONTS_DIR/install.sh"
+fi
+
+# ── Local overrides ───────────────────────────────────────────────────────────
+if [[ -f "$HOME/.laptop.local" ]]; then
+  log "Running ~/.laptop.local"
+  . "$HOME/.laptop.local"
 fi
 
 echo ""
