@@ -29,6 +29,18 @@ log "Installing packages from Brewfile"
 brew update --force
 brew bundle --file="$DOTFILES/Brewfile"
 
+# ── AWS CLI default config ────────────────────────────────────────────────────
+AWS_CONFIG="$HOME/.aws/config"
+if [[ ! -f "$AWS_CONFIG" ]]; then
+  read -rp "  ? AWS region [eu-west-1]: " aws_region
+  aws_region="${aws_region:-eu-west-1}"
+  mkdir -p "$HOME/.aws"
+  printf "[default]\noutput = json\nregion = %s\n" "$aws_region" > "$AWS_CONFIG"
+  log "Created ~/.aws/config with region: $aws_region"
+else
+  skip "~/.aws/config"
+fi
+
 # ── Shell ─────────────────────────────────────────────────────────────────────
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
   log "Changing shell to zsh"
