@@ -33,6 +33,7 @@ brew "hadolint"               # Dockerfile linter
 brew "sops"                   # encrypted secrets management for config files
 
 # Applications
+cask "bitwarden"
 cask "firefox"
 cask "font-fira-code"
 cask "logitech-options"
