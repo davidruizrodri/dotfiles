@@ -1,5 +1,6 @@
 [user]
   name = 'David Ruiz'
+  email = david.ruiz.rodri@gmail.com
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
