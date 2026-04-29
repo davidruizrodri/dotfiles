@@ -38,16 +38,3 @@ source "$DOTFILES/zsh/custom/aliases.zsh"
 source "$DOTFILES/zsh/custom/bindkeys.zsh"
 source "$DOTFILES/zsh/custom/editor.zsh"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
-# Fix for rake task with brakets
-# @link: https://thoughtbot.com/blog/how-to-use-arguments-in-a-rake-task
-unsetopt nomatch
-
-# qlty completions
-[ -s "/usr/local/share/zsh/site-functions/_qlty" ] && source "/usr/local/share/zsh/site-functions/_qlty"
-
-# qlty
-export QLTY_INSTALL="$HOME/.qlty"
-export PATH="$QLTY_INSTALL/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
