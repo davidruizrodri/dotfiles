@@ -1,73 +1,41 @@
 MY DOTFILES
 -------
+
 Clone onto your laptop:
 
-```
-> git clone git://github.com/davidruizrodri/dotfiles.git ~/.dotfiles
-```
-
-You can install them with `make`:
-
-```
-> make
-# OR
-> make install
+```sh
+git clone git@github.com:davidruizrodri/dotfiles.git ~/.dotfiles
 ```
 
-And use the `clean` rule to uninstall them:
+Install everything:
 
-```
-> make clean
-```
-
-If you want to install only one set of dotfiles, for example `git`, run:
-
-```
-> make git
-# To clean
-> make clean_git
+```sh
+cd ~/.dotfiles
+./install.sh
 ```
 
-## Makefile
+Idempotent — safe to re-run. The script will:
 
-If you check the `Makefile` you'll see that is quite simple. In fact, there is no rules to install anything. The trick is in this line:
+1. Install Homebrew (if not present)
+2. Install all packages and apps via `Brewfile`
+3. Install Claude Code
+4. Change default shell to zsh (if needed)
+5. Install oh-my-zsh, spaceship prompt, and zsh plugins
+6. Stow all dotfile packages into `$HOME`
+7. Install powerline fonts
+8. Prompt for corporate git email (written to `~/.gitconfig.local`)
+9. Prompt for AWS default region (written to `~/.aws/config`)
 
-```make
-include **/*.mk
-```
+## Adding a new app
 
-What the `Makefile` is doing here is searching for any `.mk` file in the directories' tree and if it finds one, it includes all of the file's rules.
+Add it to `Brewfile` and run `brew bundle`.
 
-The dotfiles for each app/module are in their own directory (e.g: `vim` or `zsh`), and inside those directories there is a `.mk` file (e.g: `vim.mk` or `zsh.mk`).
+## Adding a new dotfile package
 
-Each of these `.mk` files is a new `Makefile` with the rules to install that module. In order to make these `.mk` files to work with the main `Makefile`, they need to be created with a structure. This could be a template for a new module:
+1. Create a directory `<tool>/`
+2. Mirror the file's path in `$HOME` inside it — e.g. `<tool>/.config/foo/bar.conf`
+3. Add the package name to the `for package in ...` loop in `install.sh`
 
-```make
-MODULE := $(shell command -v module 2>/dev/null)
+## Machine-specific overrides
 
-ifdef MODULE
-	INSTALLERS += module
-	CLEANERS   += clean_module
-
-	MODULE_SRC_DIR := $(DOTFILES)/module
-	MODULE_DST_DIR := $(CONFIG_DIR)/module
-
-  .PHONY: module clean_module
-
-  module: dotfile_install_module
-
-  clean_module: dotfile_clean_module
-else
-	@echo "Module is not installed"
-endif
-```
-
-The most important part of this file is when we append values to `INSTALLERS` and `CLEANERS` variables. These variables are the main registries of rules for installation and cleaning. They are used by the main `Makefile` to know what rules it should call when running the `install` and `clean` rules.
-
-The `dotfile_install_%` and `dotfile_clean_%` rules are a simple way to show when a module starts its installation and cleaning rules. Add them as the first prerequisite of your rules to use them.
-
-The idea is to keep each set of dotfiles modular, so if you need to add or remove something it shouldn't affect other files or the main installation process.
-
-CREDITS
--------
-Many thanks to Juan Hernández and Fran Casas to share their Makefile configuration in their dotfiles (https://github.com/jhbabon/dotfiles and https://github.com/franciscoj/dot-files). It has been really useful to make my own configuration! Thanks guys!
+`~/.laptop.local` is sourced at the end of `install.sh` if it exists. Use it for anything that shouldn't be committed to the repo.
