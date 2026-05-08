@@ -1,5 +1,3 @@
-tap "homebrew/services"
-
 # Unix
 brew "ack"                    # grep-like text search optimized for code
 brew "autojump"               # jump to frecent directories with `j`
@@ -28,6 +26,7 @@ brew "kubernetes-cli"
 # Docker
 brew "colima"                 # container runtime, replaces Docker Desktop
 brew "docker"
+brew "docker-buildx"          # extended build capabilities (multi-platform, BuildKit)
 brew "docker-compose"
 brew "hadolint"               # Dockerfile linter
 brew "sops"                   # encrypted secrets management for config files

@@ -85,24 +85,28 @@ clone_plugin() {
 clone_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting
 clone_plugin https://github.com/zsh-users/zsh-autosuggestions.git     zsh-autosuggestions
 
-# ── Remove broken symlinks left by the old Makefile system ───────────────────
-log "Removing stale symlinks"
-for link in \
-  "$HOME/.gitconfig" "$HOME/.gitignore" "$HOME/.gitattributes" \
-  "$HOME/.zshrc" "$HOME/.asdfrc" "$HOME/.gemrc" "$HOME/.irbrc" \
-  "$HOME/.pryrc" "$HOME/.rspec" "$HOME/.ctags" "$HOME/.tmux.conf" \
-  "$HOME/.ssh/config" "$HOME/.bundle/config"
-do
-  [[ -L "$link" && ! -e "$link" ]] && rm "$link"
-done
-
 # ── Stow all packages ─────────────────────────────────────────────────────────
 log "Stowing dotfiles"
 cd "$DOTFILES"
-for package in git zsh warp; do
+for package in git zsh warp claude; do
   log "stow $package"
   stow --target="$HOME" "$package"
 done
+
+# ── Docker CLI plugin path ────────────────────────────────────────────────────
+DOCKER_CONFIG="$HOME/.docker/config.json"
+if [[ -f "$DOCKER_CONFIG" ]] && ! grep -q "cliPluginsExtraDirs" "$DOCKER_CONFIG"; then
+  log "Adding cliPluginsExtraDirs to ~/.docker/config.json"
+  tmp="$(mktemp)"
+  jq '. + {"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' "$DOCKER_CONFIG" > "$tmp"
+  mv "$tmp" "$DOCKER_CONFIG"
+elif [[ ! -f "$DOCKER_CONFIG" ]]; then
+  log "Creating ~/.docker/config.json"
+  mkdir -p "$HOME/.docker"
+  printf '{"cliPluginsExtraDirs":["/opt/homebrew/lib/docker/cli-plugins"]}\n' > "$DOCKER_CONFIG"
+else
+  skip "~/.docker/config.json cliPluginsExtraDirs"
+fi
 
 # ── Git local config (corporate email override) ───────────────────────────────
 GITCONFIG_LOCAL="$HOME/.gitconfig.local"

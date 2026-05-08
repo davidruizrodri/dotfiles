@@ -67,3 +67,4 @@ To apply the hooks to an existing repo, run `git init` inside it.
 
 - **Git**: fast-forward-only merges, rebase-based pulls with autostash, `push.autoRemoteSetup = true`.
 - **Zsh**: Spaceship battery widget disabled. `SPACESHIP_PROMPT_ASYNC=false` set for Warp terminal compatibility.
+- **Claude**: `claude/.claude/statusline.sh` is stowed to `~/.claude/statusline.sh`. The `settings.json` is intentionally not tracked (contains machine-specific secrets); configure `statusLine` in it manually to point at `~/.claude/statusline.sh`.
